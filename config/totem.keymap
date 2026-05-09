@@ -9,20 +9,58 @@
 //                                                                      ▀  ▀  ▀
 //
 // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-       
 
+// ═══════════════════════════════════════════════════════════════════
+// INCLUDES
+// These pull in ZMK's built-in key definitions and behaviour headers.
+// Without these, &kp, &mt, &lt etc. won't be recognised.
+// ═══════════════════════════════════════════════════════════════════
 #include <behaviors.dtsi>
-#include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/keys.h>       // Standard key codes (A, B, LSHFT, etc.)
+#include <dt-bindings/zmk/bt.h>         // Bluetooth controls (BT_NXT, BT_CLR, etc.)
+#include <dt-bindings/zmk/outputs.h>    // Output toggle (USB vs BLE: OUT_TOG)
 
-#define BASE 0
-#define NAV  1
-#define SYM  2
-#define ADJ  3
-#define TVP1 4
-#define TVP2 5
+// ═══════════════════════════════════════════════════════════════════
+// LAYER INDEX
+// Layers are numbered 0-5. ZMK always starts on layer 0 (BASE).
+// Higher layers are activated by holding a key — they sit "on top"
+// of lower layers, and any key not defined on the active layer
+// falls through to the next layer down (&trans).
+// ═══════════════════════════════════════════════════════════════════
+#define BASE 0   // Default typing layer (QWERTY)
+#define NAV  1   // Navigation: arrows, page up/dn, word jump, clipboard
+#define SYM  2   // Symbols & numpad
+#define ADJ  3   // Adjust: media, JA/EN, F-keys, symbols (from VIAL layer 3)
+#define TVP1 4   // TVP (video editing) layer 1 — toggled, not held
+#define TVP2 5   // TVP layer 2 — accessed via hold on TVP1's L key
 
+// ═══════════════════════════════════════════════════════════════════
+// SHORTHAND MACRO
+// MEH = Ctrl+Alt+Shift held simultaneously.
+// Used as a "super modifier" that rarely conflicts with other shortcuts.
+// Defined here so the keymap stays readable.
+// ═══════════════════════════════════════════════════════════════════
+#define MEH LC(LA(LSHFT))
+
+// ═══════════════════════════════════════════════════════════════════
+// HOLD-TAP GLOBAL SETTINGS (&mt = mod-tap)
+// &mt is used for home row mods: tap = letter, hold = modifier.
+//
+// quick-tap-ms: If you tap the same key twice quickly, the second
+//   tap sends the key code (not the modifier). Prevents accidental
+//   mod triggers when typing fast.
+//
+// global-quick-tap: If ANY key was tapped recently, the next &mt
+//   prefers the tap behaviour. Helps accuracy when typing quickly.
+//
+// flavor "tap-preferred": When in doubt, send the tap (letter),
+//   not the hold (modifier). Safer for typing, may need longer
+//   holds for deliberate modifier use.
+//
+// tapping-term-ms: How long you must hold before it registers as
+//   a modifier. 170ms is a reasonable starting point — increase
+//   if you get accidental mods, decrease if mods feel sluggish.
+// ═══════════════════════════════════════════════════════════════════
 &mt {
   quick-tap-ms = <100>;
   global-quick-tap;
@@ -31,20 +69,12 @@
 };
 
 / {
-     combos {
-            compatible = "zmk,combos";
-            combo_esc {
-                timeout-ms = <50>;
-                key-positions = <0 1>;
-                bindings = <&kp ESC>;
-            };
-            combo_tvp {
-                timeout-ms = <100>;
-                key-positions = <11 12 13>;
-                bindings = <&tog TVP1>;
-            };
-    };
-
+    // ═══════════════════════════════════════════════════════════════
+    // MACROS
+    // Macros send a sequence of key events in order.
+    // This one types "@gif" — a Slack/Teams giphy shortcut.
+    // Breakdown: press Shift, tap 2 (sends @), release Shift, type gif.
+    // ═══════════════════════════════════════════════════════════════
     macros {
         gif: gif {
             label = "giphy";
@@ -59,161 +89,193 @@
         };
     };
 
-        keymap {
-                compatible = "zmk,keymap";
+    keymap {
+        compatible = "zmk,keymap";
+
 // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
-                base_layer {
+        base_layer {
 // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 label= "BASE"                              ;
 // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-//             ┃     Q     ┃     W     ┃     F     ┃     P     ┃     G     ┃   ┃     J     ┃     L     ┃     U     ┃     Y     ┃     ;     ┃
+//             ┃     Q     ┃     W     ┃     E     ┃     R     ┃     T     ┃   ┃     Y     ┃     U     ┃     I     ┃     O     ┃     P     ┃
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-//             ┃     A     ┃     R     ┃     S     ┃     T     ┃     D     ┃   ┃     H     ┃     N     ┃     E     ┃     I     ┃     O     ┃
+//             ┃  LCTL/A   ┃  LALT/S   ┃  LGUI/D   ┃  LSFT/F   ┃   MEH/G  ┃   ┃   MEH/H  ┃  RSFT/J   ┃  RGUI/K   ┃  RALT/L   ┃ RCTL/-   ┃
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-// ┃     Q     ┃     Z     ┃     X     ┃     C     ┃     V     ┃     B     ┃   ┃     K     ┃     M     ┃     ,     ┃     .     ┃     /     ┃     \     ┃
+// ┃  LT(ADJ)  ┃     Z     ┃     X     ┃     C     ┃     V     ┃     B     ┃   ┃     N     ┃     M     ┃     ,     ┃     .     ┃     /     ┃ LT(ADJ)/ENT┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-//                                     ┃    DEL    ┃    TAB    ┃    SPC    ┃   ┃   ENTER   ┃           ┃   BSPC    ┃
+//                                     ┃ LT(ADJ)/ESC┃ LGUI/BS  ┃ LT(SYM)/TAB┃  ┃ LT(NAV)/ENT┃ LSFT/0  ┃   ---     ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
- bindings = <
+        bindings = <
 // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
 
-                &kp Q       &kp W       &kp F       &kp P       &kp G           &kp J       &kp L       &kp U       &kp Y       &kp SEMI
-                &mt LGUI A  &mt LALT R  &mt LCTRL S &mt LSHFT T &kp D           &kp H       &mt RSHFT N &mt RCTRL E &mt RALT I  &mt RGUI O
-    &kp Q       &kp Z       &kp X       &kp C       &kp V       &kp B           &kp K       &kp M       &kp COMMA   &kp DOT     &kp FSLH    &kp BSLH
-                                        &kp DEL   &lt NAV TAB   &kp SPACE       &kp RET   &lt SYM ESC   &kp BSPC
-                        >;
-                };
+//  Standard top row — no modifiers
+                &kp Q           &kp W           &kp E           &kp R           &kp T               &kp Y           &kp U           &kp I           &kp O           &kp P
+
+//  Home row mods — tap for letter, hold for modifier
+//  Left: Ctrl/Alt/GUI/Shift | Right: MEH/Shift/GUI/Alt/Ctrl
+//  MEH (Ctrl+Alt+Shift) on G and H for app-specific shortcuts
+                &mt LCTRL A     &mt LALT S      &mt LGUI D      &mt LSHFT F     &mt MEH G           &mt MEH H       &mt RSHFT J     &mt RGUI K      &mt RALT L      &mt RCTRL MINUS
+
+//  Bottom row — outer keys activate ADJ layer when held
+//  &lt ADJ 0 = tap sends nothing useful (0), hold activates ADJ
+    &lt ADJ 0   &kp Z           &kp X           &kp C           &kp V           &kp B               &kp N           &kp M           &kp COMMA       &kp DOT         &kp FSLH        &lt ADJ RET
+
+//  Thumb cluster
+//  Left:  hold ESC→ADJ | hold BSPC→GUI modifier | hold TAB→SYM layer
+//  Right: hold ENT→NAV layer | hold→LSHFT (tap sends 0, rarely used)
+                                                &lt ADJ ESC     &mt LGUI BSPC   &lt SYM TAB         &lt NAV RET     &mt LSHFT 0     &none
+                >;
+        };
 
 // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
-
-                nav_layer {
+        nav_layer {
 // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-label= "NAVI"                              ;
+label= "NAV"                               ;
 // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-//             ┃           ┃           ┃     UP    ┃           ┃     {     ┃   ┃     }     ┃     7     ┃     8     ┃     9     ┃     +     ┃
+//             ┃           ┃           ┃           ┃ SCRNSHT   ┃   SPACE   ┃   ┃           ┃  PG DN    ┃    UP     ┃  PG UP    ┃           ┃
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-//             ┃   SHIFT   ┃   LEFT    ┃    DOWN   ┃   RIGHT   ┃     [     ┃   ┃     ]     ┃     4     ┃     5     ┃     6     ┃     -     ┃
+//             ┃  LCTRL    ┃  LALT     ┃  LGUI     ┃  LSHFT    ┃           ┃   ┃           ┃  LEFT     ┃   DOWN    ┃  RIGHT    ┃  BSPC     ┃
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-// ┃           ┃           ┃   P UP    ┃  C LOCK   ┃  P DOWN   ┃     (     ┃   ┃     )     ┃     1     ┃     2     ┃     3     ┃     *     ┃           ┃
+// ┃  (trans)  ┃  GUI+Z    ┃  GUI+X    ┃  GUI+C    ┃  GUI+V    ┃           ┃   ┃           ┃ CTRL+LEFT ┃           ┃ CTRL+RGHT ┃           ┃  ENTER    ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-//                                     ┃           ┃    TAB    ┃    SPC    ┃   ┃    DEL    ┃     0     ┃           ┃
+//                                     ┃  (trans)  ┃  (trans)  ┃  (trans)  ┃   ┃  (held)   ┃  (trans)  ┃  (trans)  ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
- bindings = <
+        bindings = <
 // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
 
-                &kp ESC     &bt BT_CLR  &kp UP      &kp EQUAL   &kp LBRC        &kp RBRC    &kp KP_N7   &kp KP_N8   &kp KP_N9   &kp KP_PLUS
-                &kp LSHFT   &kp LEFT    &kp DOWN    &kp RIGHT   &kp LBKT        &kp RBKT    &kp KP_N4   &kp KP_N5   &kp KP_N6   &kp KP_MINUS
-    &trans      &kp DEL     &kp PG_UP   &kp CAPS    &kp PG_DN   &kp LPAR        &kp RPAR    &kp KP_N1   &kp KP_N2   &kp KP_N3   &kp KP_MULTIPLY &trans      
-                                        &trans      &trans      &trans          &mo ADJ     &kp KP_N0   &trans      
-                        >;
-                };
+//  Top row left: screenshot (Cmd+Shift+4) and Space
+//  Top row right: page navigation + up arrow
+                &none           &none           &none           &kp LG(LS(N4))  &kp SPACE           &none           &kp PG_DN       &kp UP          &kp PG_UP       &none
+
+//  Home row left: bare modifiers (useful for comboing with right-hand keys)
+//  Home row right: arrow keys + backspace
+                &kp LCTRL       &kp LALT        &kp LGUI        &kp LSHFT       &none               &none           &kp LEFT        &kp DOWN        &kp RIGHT       &kp BSPC
+
+//  Bottom row left: macOS clipboard shortcuts (Cmd+Z/X/C/V)
+//  Bottom row right: word jump (Ctrl+arrow), Enter on outer key
+//  &trans on outer left = falls through to BASE layer's &lt ADJ 0
+    &trans      &kp LG(Z)       &kp LG(X)       &kp LG(C)       &kp LG(V)       &none               &none           &kp LC(LEFT)    &none           &kp LC(RIGHT)   &none           &kp RET
+
+//  Thumbs: all &trans — they pass through to BASE thumb behaviours
+//  except the held key (RET) which is what activated this layer
+                                                &trans          &trans          &trans              &trans          &trans          &trans
+                >;
+        };
 
 // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
-
-                sim_layer {
+        sym_layer {
 // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 label= "SYM"                               ;
 // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-//             ┃     !     ┃     @     ┃     #     ┃     $     ┃     %     ┃   ┃     ˆ     ┃     &     ┃     Ü     ┃     '     ┃     "     ┃
+//             ┃  KP *     ┃     7     ┃     8     ┃     9     ┃     0     ┃   ┃           ┃  LSFT(0)  ┃  LALT(Y)  ┃  LSFT(9)  ┃   TAB     ┃
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-//             ┃     Ä     ┃           ┃    SZ     ┃           ┃           ┃   ┃   MUTE    ┃   YEN     ┃   EURO    ┃  POUND    ┃     Ö     ┃
+//             ┃ LCTL/KP+  ┃  LALT/4   ┃  LGUI/5   ┃  LSFT/6   ┃  KP -    ┃   ┃           ┃ RALT/]    ┃  LGUI/--- ┃ RSFT/[    ┃  KP =     ┃
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-// ┃           ┃  EMAIL1   ┃  EMAIL2   ┃           ┃           ┃           ┃   ┃   VOL-    ┃   VOL+    ┃   LAST    ┃   NEXT    ┃     \     ┃           ┃
+// ┃  ENTER    ┃  KP /     ┃     1     ┃     2     ┃     3     ┃  KP .     ┃   ┃  BSLASH   ┃  LSFT(])  ┃  (trans)  ┃  LSFT([)  ┃  KP .     ┃  BSPC     ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-//                                     ┃           ┃    GIF    ┃    ADJ    ┃   ┃           ┃           ┃           ┃
+//                                     ┃  ENTER    ┃  (trans)  ┃  (held)   ┃   ┃  (trans)  ┃  (trans)  ┃  BSPC     ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
- bindings = <
+        bindings = <
 // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
 
-                &kp EXCL    &kp AT      &kp HASH    &kp DLLR    &kp PRCNT       &kp CARET   &kp AMPS    &kp RA(U)   &kp SQT     &kp DQT       
-                &kp RA(A)   &trans      &kp RA(S)   &trans      &trans          &kp C_MUTE  &kp LS(RA(N4)) &kp RA(N5) &kp RA(N4)   &kp RA(O) 
-    &trans      &kp RA(F18) &kp RA(F19) &trans      &trans      &trans          &kp C_VOL_DN &kp C_VOL_UP &kp C_PREV &kp C_NEXT  &kp BSLH   &trans         
-                                        &trans      &gif        &mo ADJ         &trans      &kp C_PP    &trans      
-                        >;
-                };
+//  Left numpad block: KP_ASTERISK, 7-9, 0
+//  Right: JIS alt-code workarounds — these produce correct JIS characters
+//  when macOS input is set to JIS. Currently working via ANSI alt-codes.
+                &kp KP_ASTERISK     &kp N7          &kp N8          &kp N9          &kp N0              &none           &kp LS(N0)      &kp LA(Y)       &kp LS(N9)      &kp TAB
+
+//  Home row numpad with mods on left (same finger positions as BASE)
+//  Right: bracket keys with mods — RALT/] and RSFT/[
+                &mt LCTRL KP_PLUS   &mt LALT N4     &mt LGUI N5     &mt LSHFT N6    &kp KP_MINUS        &none           &mt RALT RBKT   &mt RGUI 0      &mt RSHFT LBKT  &kp KP_EQUAL
+
+//  Bottom numpad: KP_SLASH, 1-3, KP_DOT
+//  Right: backslash, shifted brackets, KP_DOT, BSPC
+//  &trans in middle falls through to BASE
+    &kp RET     &kp KP_SLASH        &kp N1          &kp N2          &kp N3          &kp KP_DOT          &kp BSLH        &kp LS(RBKT)    &trans          &kp LS(LBKT)    &kp KP_DOT      &kp BSPC
+
+//  Thumbs: Enter on left, BSPC on right
+//  TAB thumb is the held key that activated this layer (&trans passes through)
+                                                    &kp RET         &trans          &trans              &trans          &trans          &kp BSPC
+                >;
+        };
 
 // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
-
-                adjust_layer {
+        adj_layer {
 // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 label= "ADJ"                               ;
 // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-//             ┃   RESET   ┃ BT CLEAR  ┃  OUT TOG  ┃           ┃           ┃   ┃           ┃    F7     ┃    F8     ┃    F9     ┃    F12    ┃
+//             ┃  LSFT(6)  ┃  GRAVE    ┃  LSFT(8)  ┃  LSFT(2)  ┃  LALT(])  ┃   ┃  F12      ┃  (mouse)  ┃  (mouse)  ┃  (mouse)  ┃ LSA(])    ┃
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-//             ┃ BOOTLOAD  ┃ BT NEXT   ┃           ┃           ┃           ┃   ┃           ┃    F4     ┃    F5     ┃    F6     ┃    F11    ┃
+//             ┃  LSFT(;)  ┃  SEMI     ┃  QUOTE    ┃  LSFT(1)  ┃  LSFT(`) ┃   ┃  F11      ┃  (mouse)  ┃  (mouse)  ┃  (mouse)  ┃ LSA(-)    ┃
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-// ┃           ┃           ┃ BT PREV   ┃           ┃           ┃           ┃   ┃           ┃    F1     ┃    F2     ┃    F3     ┃    F10    ┃           ┃
+// ┃  (held)   ┃  LSFT(-)  ┃  LSFT(7)  ┃  LSFT(') ┃  LSFT(3)  ┃  LALT([)  ┃   ┃  F10      ┃  (mouse)  ┃  (mouse)  ┃  (mouse)  ┃ LSA([)    ┃  (held)   ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-//                                     ┃           ┃           ┃           ┃   ┃           ┃           ┃           ┃
+//                                     ┃  PREV     ┃  FFWD     ┃  LANG2/EN ┃   ┃  VOL UP   ┃  VOL DN   ┃  LANG1/JA ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
- bindings = <
+        bindings = <
 // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
 
-                &sys_reset  &bt BT_CLR &out OUT_TOG &trans      &trans          &trans      &kp F7      &kp F8      &kp F9      &kp F12
-                &bootloader &bt BT_NXT  &trans      &trans      &trans          &trans      &kp F4      &kp F5      &kp F6      &kp F11  
-    &trans      &trans      &bt BT_PRV  &trans      &trans      &trans          &trans      &kp F1      &kp F2      &kp F3      &kp F10     &trans         
-                                        &trans      &trans      &trans          &trans      &trans      &trans      
-                        >;
-                };
+//  Left: symbol keys carried over from VIAL Layer 3
+//  These are mostly punctuation/special chars using shift/alt combos
+//  Right: F-keys + LSA (Shift+Alt) combos for macOS input switching
+//  Mouse placeholders (&none) — enable CONFIG_ZMK_MOUSE=y in totem.conf
+//  then replace &none with &mmv MOVE_UP etc. when ready
+                &kp LS(N6)      &kp GRAVE       &kp LS(N8)      &kp LS(N2)      &kp LA(RBKT)        &kp F12         &none           &none           &none           &kp LS(LA(RBKT))
+                &kp LS(SEMI)    &kp SEMI        &kp SQT         &kp LS(N1)      &kp LS(GRAVE)       &kp F11         &none           &none           &none           &kp LS(LA(MINUS))
+    &trans      &kp LS(MINUS)   &kp LS(N7)      &kp LS(SQT)     &kp LS(N3)      &kp LA(LBKT)        &kp F10         &none           &none           &none           &kp LS(LA(LBKT))    &trans
+
+//  Thumb cluster:
+//  LANG2 = EN (英数 / switch to Roman input in macOS Japanese IME)
+//  LANG1 = JA (かな / switch to Kana input in macOS Japanese IME)
+//  These are the same keys your JIS keyboard's 英数 and かな keys send
+                                                &kp C_PREV      &kp C_FF        &kp LANG2           &kp C_VOL_UP    &kp C_VOL_DN    &kp LANG1
+                >;
+        };
 
 // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
-
-                tvp1_layer {
+        tvp1_layer {
 // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 label= "TVP 1"                             ;
 // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-//             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-//             ┃ NEXT FILE ┃ MARK IN   ┃ ROTATE    ┃ MARK OUT  ┃ SHOW SNAP ┃   ┃           ┃           ┃           ┃           ┃           ┃
-//             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-//             ┃ TVP II    ┃ LEFT      ┃ PAN       ┃ RIGHT     ┃ PLAY/FLIP ┃   ┃           ┃           ┃           ┃           ┃           ┃
-// ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-// ┃ FULLSCR   ┃ SHIFT     ┃ COPY      ┃ DELETE    ┃ PASTE     ┃ IMG MARK  ┃   ┃           ┃           ┃           ┃           ┃           ┃           ┃
-// ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-//                                     ┃           ┃ UNDO/SAVE ┃  SEL/MOV  ┃   ┃           ┃           ┃           ┃
-//                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
- bindings = <
+// TVP layers are for video editing (Touch Video Player or similar).
+// TVP1 is toggled on/off rather than held — it replaces BASE entirely.
+// TVP2 is accessed by holding the L key position while in TVP1.
+// The right half is blank (&none) — only left hand used in this mode.
+        bindings = <
 // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
 
-                &kp TAB     &kp I       &kp LC(LALT) &kp O      &kp LC(F20)     &none       &none       &none       &none       &none
-                &lt TVP2 L  &kp LEFT    &kp LALT    &kp RIGHT   &kp SPACE       &none       &none       &none       &none       &none
-    &kp J       &kp LSHFT   &kp LC(C)   &kp BSPC    &kp LC(V)   &kp LC(F19)     &none       &none       &none       &none       &none       &none        
-                                        &trans      &kp LC(F14) &kp LC(F13)     &none       &none       &none    
-                        >;
-                };
+                &kp TAB         &kp I           &kp LC(LALT)    &kp O           &kp LC(F20)         &none           &none           &none           &none           &none
+                &lt TVP2 L      &kp LEFT        &kp LALT        &kp RIGHT       &kp SPACE           &none           &none           &none           &none           &none
+    &kp J       &kp LSHFT       &kp LC(C)       &kp BSPC        &kp LC(V)       &kp LC(F19)         &none           &none           &none           &none           &none           &none
+                                                &trans          &kp LC(F14)     &kp LC(F13)         &none           &none           &none
+                >;
+        };
 
 // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
-
-                tvp2_layer {
+        tvp2_layer {
 // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 label= "TVP 2"                             ;
 // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-//             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-//             ┃ SOLO      ┃ TOGGLE IN ┃ RESET ROT ┃ TOGGLE OUT┃ TAKE SNAP ┃   ┃           ┃           ┃           ┃           ┃           ┃
-//             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-//             ┃ ---       ┃ LAST KEY  ┃ NEW KEY   ┃ NEXT KEY  ┃ ENTER     ┃   ┃           ┃           ┃           ┃           ┃           ┃
-// ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-// ┃           ┃ FULLSCR   ┃ CPY2BRUSH ┃ DEL HEAD  ┃ PSTinPLACE┃ BOOK MARK ┃   ┃           ┃           ┃           ┃           ┃           ┃           ┃
-// ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-//                                     ┃           ┃ REDO/SAV1 ┃TRANS/WARP ┃   ┃           ┃           ┃           ┃
-//                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
- bindings = <
+// TVP2 is a sub-layer of TVP1, accessed by holding L in TVP1.
+// Adds secondary editing commands without leaving the TVP mode.
+        bindings = <
 // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
 
-                &kp LC(F18) &kp LS(I)  &kp LS(HOME) &kp LS(O)   &kp LS(F)       &trans      &kp F7      &kp F8      &kp F9      &kp F12
-                &trans      &kp LS(LEFT) &kp LC(F17) &kp LS(RIGHT) &kp RET      &trans      &kp F4      &kp F5      &kp F6      &kp F11  
-    &trans      &kp J       &kp LS(C)   &kp LC(F16) &kp LS(V)   &kp LC(F15)     &trans      &kp F1      &kp F2      &kp F3      &kp F10     &trans         
-                                        &trans      &kp LC(F12) &kp LC(F11)     &trans      &trans      &trans      
-                        >;
-                };
+                &kp LC(F18)     &kp LS(I)       &kp LS(HOME)    &kp LS(O)       &kp LS(F)           &trans          &kp F7          &kp F8          &kp F9          &kp F12
+                &trans          &kp LS(LEFT)    &kp LC(F17)     &kp LS(RIGHT)   &kp RET             &trans          &kp F4          &kp F5          &kp F6          &kp F11
+    &trans      &kp J           &kp LS(C)       &kp LC(F16)     &kp LS(V)       &kp LC(F15)         &trans          &kp F1          &kp F2          &kp F3          &kp F10         &trans
+                                                &trans          &kp LC(F12)     &kp LC(F11)         &trans          &trans          &trans
+                >;
         };
+
+    };
 };
