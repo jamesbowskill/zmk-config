@@ -101,7 +101,7 @@ label= "BASE"                              ;
 //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
 //             ┃     Q     ┃     W     ┃     E     ┃     R     ┃     T     ┃   ┃     Y     ┃     U     ┃     I     ┃     O     ┃     P     ┃
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-//             ┃  LCTL/A   ┃  LALT/S   ┃  LGUI/D   ┃  LSFT/F   ┃   MEH/G  ┃   ┃   MEH/H  ┃  RSFT/J   ┃  RGUI/K   ┃  RALT/L   ┃ RCTL/-   ┃
+//             ┃  LCTL/A   ┃  LALT/S   ┃  LGUI/D   ┃  LSFT/F   ┃   MEH/G  ┃   ┃   MEH/H  ┃  RSFT/J   ┃  LGUI/K   ┃  RALT/L   ┃ RCTL/-   ┃
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
 // ┃  LT(ADJ)  ┃     Z     ┃     X     ┃     C     ┃     V     ┃     B     ┃   ┃     N     ┃     M     ┃     ,     ┃     .     ┃     /     ┃ LT(ADJ)/ENT┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
@@ -116,9 +116,10 @@ label= "BASE"                              ;
 //  Home row mods — tap for letter, hold for modifier
 //  Left: Ctrl/Alt/GUI/Shift | Right: MEH/Shift/GUI/Alt/Ctrl
 //  MEH (Ctrl+Alt+Shift) on G and H for app-specific shortcuts
-                &mt LCTRL A     &mt LALT S      &mt LGUI D      &mt LSHFT F     &mt MEH G           &mt MEH H       &mt RSHFT J     &mt RGUI K      &mt RALT L      &mt RCTRL MINUS
+                &mt LCTRL A     &mt LALT S      &mt LGUI D      &mt LSHFT F     &mt MEH G           &mt MEH H       &mt RSHFT J     &mt LGUI K      &mt RALT L      &mt RCTRL MINUS
 
 //  Bottom row — outer keys activate ADJ layer when held
+//  LGUI is used on RH instead of RGUI because RGUI is remapped to Meh in OS via Superkey.app for when using other keyboards
 //  &lt ADJ 0 = tap sends nothing useful (0), hold activates ADJ
     &lt ADJ 0   &kp Z           &kp X           &kp C           &kp V           &kp B               &kp N           &kp M           &kp COMMA       &kp DOT         &kp FSLH        &lt ADJ RET
 
@@ -136,7 +137,7 @@ label= "BASE"                              ;
 label= "NAV"                               ;
 // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-//             ┃           ┃           ┃           ┃ SCRNSHT   ┃   SPACE   ┃   ┃           ┃  PG DN    ┃    UP     ┃  PG UP    ┃           ┃
+//             ┃           ┃           ┃           ┃ SCRNSHT   ┃   SPACE   ┃   ┃           ┃  PG UP    ┃    UP     ┃  PG DN    ┃           ┃
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
 //             ┃  LCTRL    ┃  LALT     ┃  LGUI     ┃  LSHFT    ┃           ┃   ┃           ┃  LEFT     ┃   DOWN    ┃  RIGHT    ┃  BSPC     ┃
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
@@ -149,7 +150,7 @@ label= "NAV"                               ;
 
 //  Top row left: screenshot (Cmd+Shift+4) and Space
 //  Top row right: page navigation + up arrow
-                &none           &none           &none           &kp LG(LS(N4))  &kp SPACE           &none           &kp PG_DN       &kp UP          &kp PG_UP       &none
+                &none           &none           &none           &kp LG(LS(N4))  &kp SPACE           &none           &kp PG_UP       &kp UP          &kp PG_DN       &none
 
 //  Home row left: bare modifiers (useful for comboing with right-hand keys)
 //  Home row right: arrow keys + backspace
