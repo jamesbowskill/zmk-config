@@ -69,6 +69,31 @@
 };
 
 / {
+
+    // ═══════════════════════════════════════════════════════════════
+    // COMBOS
+    // Combos trigger when multiple keys are pressed simultaneously.
+    // key-positions reference the matrix position numbers (0-indexed).
+    // timeout-ms is how long you have to press both keys together.
+    // ═══════════════════════════════════════════════════════════════
+    combos {
+        compatible = "zmk,combos";
+
+        // D+F (positions 12+13) → Eisu/EN input
+        combo_eisu {
+            timeout-ms = <50>;
+            key-positions = <12 13>;
+            bindings = <&kp LANG2>;
+        };
+
+        // J+K (positions 16+17) → Kana/JA input
+        combo_kana {
+            timeout-ms = <50>;
+            key-positions = <16 17>;
+            bindings = <&kp LANG1>;
+        };
+    };
+
     // ═══════════════════════════════════════════════════════════════
     // MACROS
     // Macros send a sequence of key events in order.
