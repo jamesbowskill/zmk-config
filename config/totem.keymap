@@ -12,8 +12,6 @@
 
 // ═══════════════════════════════════════════════════════════════════
 // INCLUDES
-// These pull in ZMK's built-in key definitions and behaviour headers.
-// Without these, &kp, &mt, &lt etc. won't be recognised.
 // ═══════════════════════════════════════════════════════════════════
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>       // Standard key codes (A, B, LSHFT, etc.)
@@ -23,10 +21,6 @@
 
 // ═══════════════════════════════════════════════════════════════════
 // LAYER INDEX
-// Layers are numbered 0-5. ZMK always starts on layer 0 (BASE).
-// Higher layers are activated by holding a key — they sit "on top"
-// of lower layers, and any key not defined on the active layer
-// falls through to the next layer down (&trans).
 // ═══════════════════════════════════════════════════════════════════
 #define BASE 0   // Default typing layer (QWERTY)
 #define NAV  1   // Navigation: arrows, page up/dn, word jump, clipboard
@@ -38,28 +32,11 @@
 // ═══════════════════════════════════════════════════════════════════
 // SHORTHAND MACRO
 // MEH = Ctrl+Alt+Shift held simultaneously.
-// Used as a "super modifier" that rarely conflicts with other shortcuts.
-// Defined here so the keymap stays readable.
 // ═══════════════════════════════════════════════════════════════════
 #define MEH LC(LA(LSHFT))
 
 // ═══════════════════════════════════════════════════════════════════
 // HOLD-TAP GLOBAL SETTINGS (&mt = mod-tap)
-// &mt is used for home row mods: tap = letter, hold = modifier.
-//
-// quick-tap-ms: If you tap the same key twice quickly, the second
-//   tap sends the key code (not the modifier). Prevents accidental
-//   mod triggers when typing fast.
-//
-// global-quick-tap: If ANY key was tapped recently, the next &mt
-//   prefers the tap behaviour. Helps accuracy when typing quickly.
-//
-// flavor "tap-preferred": When in doubt, send the tap (letter),
-//   not the hold (modifier). Safer for typing, may need longer
-//   holds for deliberate modifier use.
-//
-// tapping-term-ms: How long you must hold before it registers as
-//   a modifier. 200ms matches your previous VIAL setting.
 // ═══════════════════════════════════════════════════════════════════
 &mt {
   quick-tap-ms = <100>;
@@ -72,9 +49,6 @@
 
     // ═══════════════════════════════════════════════════════════════
     // COMBOS
-    // Combos trigger when multiple keys are pressed simultaneously.
-    // key-positions reference the matrix position numbers (0-indexed).
-    // timeout-ms is how long you have to press both keys together.
     // ═══════════════════════════════════════════════════════════════
     combos {
         compatible = "zmk,combos";
@@ -103,22 +77,23 @@
 
     // ═══════════════════════════════════════════════════════════════
     // MACROS
-    // Macros send a sequence of key events in order.
-    // This one types "@gif" — a Slack/Teams giphy shortcut.
-    // Breakdown: press Shift, tap 2 (sends @), release Shift, type gif.
+    // 
+    // node_label: node_name {    ← define it here
+    //   label = "human readable";
+    //   ...
+    // }
+    // 
+    // &node_label    ← reference it like this in the keymap
     // ═══════════════════════════════════════════════════════════════
     macros {
-        gif: gif {
-            label = "giphy";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_press &kp LSHFT>
-                , <&macro_tap &kp N2>
-                , <&macro_release &kp LSHFT>
-                , <&macro_tap &kp G &kp I &kp F>
-                ;
-        };
+      akqa: akqa {
+        label = "Types AKQA";
+        compatible = "zmk,behavior-macro";
+        #binding-cells = <0>;
+        bindings
+          = <&macro_tap &kp LS(A) &kp LS(K) &kp LS(Q) &kp LS(A)>
+        ;
+      };
     };
 
     keymap {
@@ -133,11 +108,11 @@ label= "BASE"                              ;
 //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
 //             ┃     Q     ┃     W     ┃     E     ┃     R     ┃     T     ┃   ┃     Y     ┃     U     ┃     I     ┃     O     ┃     P     ┃
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-//             ┃  LCTL/A   ┃  LALT/S   ┃  LGUI/D   ┃  LSFT/F   ┃   MEH/G  ┃   ┃   MEH/H  ┃  RSFT/J   ┃  LGUI/K   ┃  RALT/L   ┃ RCTL/-   ┃
+//             ┃  LCTL/A   ┃  LALT/S   ┃  LGUI/D   ┃  LSFT/F   ┃    MEH/G  ┃   ┃   MEH/H   ┃  RSFT/J   ┃  LGUI/K   ┃  RALT/L   ┃ RCTL/-    ┃
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
 // ┃  LT(ADJ)  ┃     Z     ┃     X     ┃     C     ┃     V     ┃     B     ┃   ┃     N     ┃     M     ┃     ,     ┃     .     ┃     /     ┃ LT(ADJ)/ENT┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-//                                     ┃ LT(NAV)/ESC┃ LGUI/BS  ┃ LT(SYM)/TAB┃  ┃ LT(NAV)/ENT┃ LSFT/SPC┃   ---     ┃
+//                                     ┃ LT(NAV)/ESC┃ LGUI/BS  ┃ LT(SYM)/TAB┃  ┃ LT(NAV)/ENT┃ LSFT/SPC ┃   ---     ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
         bindings = <
 // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
@@ -208,7 +183,7 @@ label= "SYM"                               ;
 //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
 //             ┃  KP *     ┃     7     ┃     8     ┃     9     ┃     0     ┃   ┃   TAB     ┃  LSFT(0)  ┃  LALT(Y)  ┃  LSFT(9)  ┃  (trans)  ┃
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-//             ┃ LCTL/KP+  ┃  LALT/4   ┃  LGUI/5   ┃  LSFT/6   ┃  KP -    ┃   ┃  EQUAL    ┃ RALT/(    ┃  LGUI/--- ┃ RSFT/)    ┃  KP =     ┃
+//             ┃ LCTL/KP+  ┃  LALT/4   ┃  LGUI/5   ┃  LSFT/6   ┃  KP -         ┃  EQUAL    ┃ RALT/(    ┃  LGUI/--- ┃ RSFT/)    ┃  KP =     ┃
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
 // ┃  (trans)  ┃  KP /     ┃     1     ┃     2     ┃     3     ┃  KP .     ┃   ┃   DOT     ┃  LSFT([)  ┃  (trans)  ┃  LSFT(])  ┃  KP .     ┃  (trans)  ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
