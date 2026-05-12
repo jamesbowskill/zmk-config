@@ -40,7 +40,7 @@
 // ═══════════════════════════════════════════════════════════════════
 &mt {
   quick-tap-ms = <100>;
-  global-quick-require-prior-idle-ms;
+  global-quick-tap;
   flavor = "tap-preferred";
   tapping-term-ms = <200>;
 };
