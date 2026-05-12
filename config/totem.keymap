@@ -173,7 +173,7 @@ label= "NUM"                               ;
         bindings = <
 
                 &kp KP_ASTERISK     &kp N7          &kp N8          &kp N9          &kp N0              &kp TAB         &kp LS(N9)      &kp LA(Y)       &kp LS(N0)      &none
-                &mt LCTRL KP_PLUS   &mt LALT N4     &mt LGUI N5     &mt LSHFT N6    &kp KP_MINUS        &kp EQUAL       &mt RALT LPAR   &mt RGUI 0      &mt RSHFT RPAR  &trans
+                &mt LCTRL KP_PLUS   &mt LALT N4     &mt LGUI N5     &mt LSHFT N6    &kp KP_MINUS        &kp EQUAL       &mt RSHFT LBKT  &mt LGUI 0      &mt RALT RBKT   &trans
     &trans      &kp KP_SLASH        &kp N1          &kp N2          &kp N3          &kp KP_DOT          &kp DOT         &kp LS(LBKT)    &trans          &kp LS(RBKT)    &trans      &trans
                                                     &trans          &trans          &trans              &kp BSPC        &trans          &trans
                 >;
