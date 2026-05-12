@@ -40,7 +40,7 @@
 // ═══════════════════════════════════════════════════════════════════
 &mt {
   quick-tap-ms = <100>;
-  global-quick-tap;
+  global-quick-require-prior-idle-ms;
   flavor = "tap-preferred";
   tapping-term-ms = <200>;
 };
@@ -79,7 +79,6 @@
     // MACROS
     // 
     // node_label: node_name {    ← define it here
-    //   label = "human readable";
     //   ...
     // }
     // 
@@ -87,7 +86,6 @@
     // ═══════════════════════════════════════════════════════════════
     macros {
       akqa: akqa {
-        label = "Types AKQA";
         compatible = "zmk,behavior-macro";
         #binding-cells = <0>;
         bindings
@@ -129,7 +127,7 @@ label= "BASE"                              ;
 //  LGUI is used on RH instead of RGUI because RGUI is remapped to Meh in OS via Superkey.app for when using other keyboards
     &lt SYM 0   &kp Z           &kp X           &kp C           &kp V           &kp B               &kp N           &kp M           &kp COMMA       &kp DOT         &kp FSLH        &lt SYM RET
 
-                                                &lt MOUSE ESC     &mt LGUI BSPC   &lt NUM TAB       &lt NAV RET     &mt LSHFT SPACE &lt FUN
+                                                &lt MOUSE ESC     &mt LGUI BSPC   &lt NUM TAB       &lt NAV RET     &mt LSHFT SPACE &lt FUN 0
                 >;
         };
 
