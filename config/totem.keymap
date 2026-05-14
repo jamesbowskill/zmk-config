@@ -107,26 +107,17 @@ label= "BASE"                              ;
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
 //             ┃  LCTL/A   ┃  LALT/S   ┃  LGUI/D   ┃  LSFT/F   ┃    MEH/G  ┃   ┃   MEH/H   ┃  RSFT/J   ┃  LGUI/K   ┃  RALT/L   ┃ RCTL/-    ┃
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-// ┃  LT(SYM)  ┃     Z     ┃     X     ┃     C     ┃     V     ┃     B     ┃   ┃     N     ┃     M     ┃     ,     ┃     .     ┃     /     ┃ LT(SYM)/ENT┃
+// ┃    SYM    ┃     Z     ┃     X     ┃     C     ┃     V     ┃     B     ┃   ┃     N     ┃     M     ┃     ,     ┃     .     ┃     /     ┃  SYM/ENT  ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-//                                     ┃ LT(MOUSE)/ESC┃ LGUI/BS  ┃ LT(NUM)/TAB┃  ┃ LT(NAV)/ENT┃ LSFT/SPC ┃  LT(FUN)  ┃
+//                                     ┃ MOUSE/ESC ┃  CMND/BS  ┃  NUM/TAB  ┃   ┃ NAV/ENT   ┃  SFT/SPC  ┃    FUN    ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
         bindings = <
-// ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
+//  Note: LGUI is used on RH instead of RGUI because RGUI is remapped to Meh in OS via Superkey.app for when using other keyboards
 
-//  Standard top row — no modifiers
-                &kp Q           &kp W           &kp E           &kp R           &kp T               &kp Y           &kp U           &kp I           &kp O           &kp P
-
-//  Home row mods — tap for letter, hold for modifier
-//  Left: Ctrl/Alt/GUI/Shift | Right: MEH/Shift/GUI/Alt/Ctrl
-//  MEH (Ctrl+Alt+Shift) on G and H for app-specific shortcuts
+                &kp Q           &kp W           &kp E           &kp R           &mt LG(T) T         &kp Y           &kp U           &kp I           &mt LG(O) O     &kp P
                 &mt LCTRL A     &mt LALT S      &mt LGUI D      &mt LSHFT F     &mt MEH G           &mt MEH H       &mt RSHFT J     &mt LGUI K      &mt RALT L      &mt RCTRL MINUS
-
-//  Bottom row — outer keys activate SYM layer when held
-//  LGUI is used on RH instead of RGUI because RGUI is remapped to Meh in OS via Superkey.app for when using other keyboards
-    &lt SYM 0   &kp Z           &kp X           &kp C           &kp V           &kp B               &kp N           &kp M           &kp COMMA       &kp DOT         &kp FSLH        &lt SYM RET
-
-                                                &lt MOUSE ESC     &mt LGUI BSPC   &lt NUM TAB       &lt NAV RET     &mt LSHFT SPACE &lt FUN 0
+    &lt SYM 0   &mt LG(Z) Z     &mt LG(X) X     &mt LG(C) C     &mt LG(V) V     &kp B               &kp N           &kp M           &kp COMMA       &kp DOT         &kp FSLH        &lt SYM RET
+                                                &lt MOUSE ESC   &mt LGUI BSPC   &lt NUM TAB         &lt NAV RET     &mt LSHFT SPACE &lt FUN 0
                 >;
         };
 
