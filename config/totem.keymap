@@ -11,8 +11,15 @@
 // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 // ═══════════════════════════════════════════════════════════════════
+// MOUSE SPEEDS
+// ═══════════════════════════════════════════════════════════════════
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 1500
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 20
+
+// ═══════════════════════════════════════════════════════════════════
 // INCLUDES
 // ═══════════════════════════════════════════════════════════════════
+#include <dt-bindings/zmk/pointing.h>   // Mouse control
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>       // Standard key codes (A, B, LSHFT, etc.)
 #include <dt-bindings/zmk/bt.h>         // Bluetooth controls (BT_NXT, BT_CLR, etc.)
