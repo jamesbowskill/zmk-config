@@ -212,7 +212,7 @@ label= "MOUSE"                             ;
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
 //             ┃           ┃    BT 4   ┃           ┃           ┃  BT CLR   ┃   ┃           ┃   MS LT   ┃   MS DN   ┃   MS RT   ┃           ┃
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-// ┃  (trans)  ┃           ┃    BT 1   ┃    BT 2   ┃    BT 3   ┃           ┃   ┃           ┃           ┃           ┃           ┃           ┃  (trans)  ┃
+// ┃  (trans)  ┃           ┃    BT 1   ┃    BT 2   ┃    BT 3   ┃  BT OUT   ┃   ┃           ┃           ┃           ┃           ┃           ┃  (trans)  ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 //                                     ┃  (held)   ┃  (trans)  ┃  (trans)  ┃   ┃    BTN1   ┃   BTN2    ┃    ESC    ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
@@ -221,7 +221,7 @@ label= "MOUSE"                             ;
 
                 &none      &none            &none           &none           &bt BT_SEL 0        &none         &msc SCRL_DOWN    &mmv MOVE_UP      &msc SCRL_UP      &none
                 &none      &bt BT_SEL 4     &none           &none           &bt BT_CLR          &none         &mmv MOVE_LEFT    &mmv MOVE_DOWN    &mmv MOVE_RIGHT   &none
-    &trans      &none      &bt BT_SEL 1     &bt BT_SEL 2    &bt BT_SEL 3    &none               &none         &none             &none             &none             &none     &trans
+    &trans      &none      &bt BT_SEL 1     &bt BT_SEL 2    &bt BT_SEL 3    &out OUT_BLE        &none         &none             &none             &none             &none     &trans
                                             &trans          &trans          &trans              &mkp LCLK     &mkp RCLK         &kp ESC
                 >;
         };
