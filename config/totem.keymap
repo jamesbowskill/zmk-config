@@ -123,7 +123,7 @@ label= "BASE"                              ;
 
                       &kp Q           &mt LG(W) W     &kp E           &mt LG(R) R     &mt LG(T) T         &kp Y           &kp U           &mt LG(I) I     &mt LG(O) O     &kp P
                       &mt LCTRL A     &mt LALT S      &mt LGUI D      &mt LSHFT F     &mt MEH G           &mt MEH H       &mt RSHFT J     &mt LGUI K      &mt RALT L      &mt RCTRL MINUS
-    &out OUT_TOG      &mt LG(Z) Z     &mt LG(X) X     &mt LG(C) C     &mt LG(V) V     &kp B               &mt LG(N) N     &kp M           &kp COMMA       &kp DOT         &kp FSLH        &lt SYM RET
+    &lt SYM RET       &mt LG(Z) Z     &mt LG(X) X     &mt LG(C) C     &mt LG(V) V     &kp B               &mt LG(N) N     &kp M           &kp COMMA       &kp DOT         &kp FSLH        &lt SYM RET
                                                       &lt MOUSE ESC   &mt LGUI BSPC   &lt NUM TAB         &lt NAV RET     &mt LSHFT SPACE &lt FUN 0
                 >;
         };
@@ -210,19 +210,19 @@ label= "MOUSE"                             ;
 //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
 //             ┃           ┃           ┃           ┃           ┃    BT 0   ┃   ┃           ┃  SCRL DN  ┃   MS UP   ┃  SCRL UP  ┃           ┃
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-//             ┃     A     ┃    BT 4   ┃           ┃           ┃  BT CLR   ┃   ┃           ┃   MS LT   ┃   MS DN   ┃   MS RT   ┃           ┃
+//             ┃           ┃    BT 4   ┃           ┃           ┃  BT CLR   ┃   ┃           ┃   MS LT   ┃   MS DN   ┃   MS RT   ┃           ┃
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-// ┃  (trans)  ┃           ┃    BT 1   ┃    BT 2   ┃    BT 3   ┃  BT TOG   ┃   ┃           ┃           ┃           ┃           ┃           ┃  (trans)  ┃
+// ┃    BLE    ┃           ┃    BT 1   ┃    BT 2   ┃    BT 3   ┃    USB    ┃   ┃           ┃           ┃           ┃           ┃           ┃  (trans)  ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 //                                     ┃  (held)   ┃  (trans)  ┃  (trans)  ┃   ┃    BTN1   ┃   BTN2    ┃    ESC    ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 
         bindings = <
 
-                &none      &none            &none           &none           &bt BT_SEL 0        &none         &msc SCRL_DOWN    &mmv MOVE_UP      &msc SCRL_UP      &none
-                &kp LS(A)  &bt BT_SEL 4     &none           &none           &bt BT_CLR          &none         &mmv MOVE_LEFT    &mmv MOVE_DOWN    &mmv MOVE_RIGHT   &none
-    &trans      &none      &bt BT_SEL 1     &bt BT_SEL 2    &bt BT_SEL 3    &out OUT_TOG        &none         &none             &none             &none             &none     &trans
-                                            &trans          &trans          &trans              &mkp LCLK     &mkp RCLK         &kp ESC
+                  &none      &none            &none           &none           &bt BT_SEL 0        &none         &msc SCRL_DOWN    &mmv MOVE_UP      &msc SCRL_UP      &none
+                  &none      &bt BT_SEL 4     &none           &none           &bt BT_CLR          &none         &mmv MOVE_LEFT    &mmv MOVE_DOWN    &mmv MOVE_RIGHT   &none
+    &out OUT_BLE  &none      &bt BT_SEL 1     &bt BT_SEL 2    &bt BT_SEL 3    &out OUT_USB        &none         &none             &none             &none             &none     &trans
+                                              &trans          &trans          &trans              &mkp LCLK     &mkp RCLK         &kp ESC
                 >;
         };
 
