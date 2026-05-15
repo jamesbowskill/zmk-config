@@ -208,21 +208,21 @@ label= "SYM"                               ;
 label= "MOUSE"                             ;
 // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-//             ┃           ┃           ┃           ┃           ┃           ┃   ┃           ┃  SCRL DN  ┃   MS UP   ┃  SCRL UP  ┃           ┃
+//             ┃           ┃           ┃           ┃           ┃    BT 0   ┃   ┃           ┃  SCRL DN  ┃   MS UP   ┃  SCRL UP  ┃           ┃
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-//             ┃           ┃           ┃           ┃           ┃           ┃   ┃           ┃   MS LT   ┃   MS DN   ┃   MS RT   ┃           ┃
+//             ┃           ┃    BT 4   ┃           ┃           ┃  BT CLR   ┃   ┃           ┃   MS LT   ┃   MS DN   ┃   MS RT   ┃           ┃
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-// ┃  (trans)  ┃           ┃           ┃           ┃           ┃           ┃   ┃           ┃           ┃           ┃           ┃           ┃  (trans)  ┃
+// ┃  (trans)  ┃           ┃    BT 1   ┃    BT 2   ┃    BT 3   ┃           ┃   ┃           ┃           ┃           ┃           ┃           ┃  (trans)  ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 //                                     ┃  (held)   ┃  (trans)  ┃  (trans)  ┃   ┃    BTN1   ┃   BTN2    ┃    ESC    ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 
         bindings = <
 
-                &none           &none           &none           &none           &none           &none         &msc SCRL_DOWN    &mmv MOVE_UP      &msc SCRL_UP      &none
-                &none           &none           &none           &none           &none           &none         &mmv MOVE_LEFT    &mmv MOVE_DOWN    &mmv MOVE_RIGHT   &none
-    &trans      &none           &none           &none           &none           &none           &none         &none             &none              &none            &none     &trans
-                                                &trans          &trans          &trans          &mkp LCLK     &mkp RCLK         &kp ESC
+                &none      &none            &none           &none           &bt BT_SEL 0        &none         &msc SCRL_DOWN    &mmv MOVE_UP      &msc SCRL_UP      &none
+                &none      &bt BT_SEL 4     &none           &none           &bt BT_CLR          &none         &mmv MOVE_LEFT    &mmv MOVE_DOWN    &mmv MOVE_RIGHT   &none
+    &trans      &none      &bt BT_SEL 1     &bt BT_SEL 2    &bt BT_SEL 3    &none               &none         &none             &none             &none             &none     &trans
+                                            &trans          &trans          &trans              &mkp LCLK     &mkp RCLK         &kp ESC
                 >;
         };
 
@@ -234,7 +234,7 @@ label= "MOUSE"                             ;
 label= "FUN"                             ;
 // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-//             ┃           ┃    F7     ┃    F8     ┃    F9     ┃    F10    ┃   ┃  BT CLR   ┃    BT 0   ┃    BT 1   ┃    BT 2   ┃    BT 3   ┃
+//             ┃           ┃    F7     ┃    F8     ┃    F9     ┃    F10    ┃   ┃           ┃           ┃           ┃           ┃           ┃
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
 //             ┃           ┃    F4     ┃    F5     ┃    F6     ┃    F11    ┃   ┃           ┃           ┃           ┃           ┃           ┃
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
@@ -244,12 +244,11 @@ label= "FUN"                             ;
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 
         bindings = <
-// ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
 
-                &bt BT_SEL 0           &kp F7          &kp F8          &kp F9          &kp F10               &bt BT_CLR      &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3
-                &bt BT_SEL 1           &kp F4          &kp F5          &kp F6          &kp F11               &none           &none           &none           &none           &none
-    &bt BT_CLR  &bt BT_SEL 2           &kp F1          &kp F2          &kp F3          &kp F12               &none           &none           &none           &none           &none           &trans
-                                                &trans          &trans          &trans                &trans          &trans          &trans
+                &none        &kp F7         &kp F8          &kp F9          &kp F10            &none       &none        &none      &none      &none
+                &none        &kp F4         &kp F5          &kp F6          &kp F11            &none       &none        &none      &none      &none
+    &trans      &none        &kp F1         &kp F2          &kp F3          &kp F12            &none       &none        &none      &none      &none      &trans
+                                            &trans          &trans          &trans             &trans      &trans       &trans
                 >;
         };
 
