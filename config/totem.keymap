@@ -121,9 +121,9 @@ label= "BASE"                              ;
         bindings = <
 //  Note: LGUI is used on RH instead of RGUI because RGUI is remapped to Meh in OS via Superkey.app for when using other keyboards
 
-                &kp Q           &kp W           &kp E           &kp R           &mt LG(T) T         &kp Y           &kp U           &kp I           &mt LG(O) O     &kp P
+                &kp Q           &mt LG(W) W     &kp E           &mt LG(R) R     &mt LG(T) T         &kp Y           &kp U           &mt LG(I) I     &mt LG(O) O     &kp P
                 &mt LCTRL A     &mt LALT S      &mt LGUI D      &mt LSHFT F     &mt MEH G           &mt MEH H       &mt RSHFT J     &mt LGUI K      &mt RALT L      &mt RCTRL MINUS
-    &lt SYM 0   &mt LG(Z) Z     &mt LG(X) X     &mt LG(C) C     &mt LG(V) V     &kp B               &kp N           &kp M           &kp COMMA       &kp DOT         &kp FSLH        &lt SYM RET
+    &lt SYM 0   &mt LG(Z) Z     &mt LG(X) X     &mt LG(C) C     &mt LG(V) V     &kp B               &mt LG(N) N     &kp M           &kp COMMA       &kp DOT         &kp FSLH        &lt SYM RET
                                                 &lt MOUSE ESC   &mt LGUI BSPC   &lt NUM TAB         &lt NAV RET     &mt LSHFT SPACE &lt FUN 0
                 >;
         };
