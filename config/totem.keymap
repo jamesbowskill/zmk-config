@@ -54,6 +54,20 @@
 / {
 
     // ═══════════════════════════════════════════════════════════════
+    // BEHAVIORS
+    // ═══════════════════════════════════════════════════════════════
+    behaviors {
+        lt_sl: lt_sl {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <100>;
+            flavor = "tap-preferred";
+            bindings = <&mo>, <&sl>;
+        };
+    };
+
+    // ═══════════════════════════════════════════════════════════════
     // COMBOS
     // ═══════════════════════════════════════════════════════════════
     combos {
@@ -123,7 +137,7 @@ label= "BASE"                              ;
 
                       &kp Q           &mt LG(W) W     &kp E           &mt LG(R) R     &mt LG(T) T         &kp Y           &kp U           &mt LG(I) I     &mt LG(O) O     &kp P
                       &mt LCTRL A     &mt LALT S      &mt LGUI D      &mt LSHFT F     &mt MEH G           &mt MEH H       &mt RSHFT J     &mt LGUI K      &mt RALT L      &mt RCTRL MINUS
-    &lt SYM RET       &mt LG(Z) Z     &mt LG(X) X     &mt LG(C) C     &mt LG(V) V     &kp B               &mt LG(N) N     &kp M           &kp COMMA       &kp DOT         &kp FSLH        &lt SYM RET
+    &lt_sl SYM SYM    &mt LG(Z) Z     &mt LG(X) X     &mt LG(C) C     &mt LG(V) V     &kp B               &mt LG(N) N     &kp M           &kp COMMA       &kp DOT         &kp FSLH        &lt_sl SYM SYM
                                                       &lt MOUSE ESC   &mt LGUI BSPC   &lt NUM TAB         &lt NAV RET     &mt LSHFT SPACE &lt FUN 0
                 >;
         };
@@ -163,7 +177,7 @@ label= "NUM"                               ;
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
 //             ┃ LCTL/ +   ┃  LALT/4   ┃  LGUI/5   ┃  LSFT/6   ┃     -     ┃   ┃     =     ┃   RSFT    ┃    LGUI   ┃   RALT    ┃   RCTRL   ┃
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-// ┃  (trans)  ┃  KP /     ┃     1     ┃     2     ┃     3     ┃     .     ┃   ┃     .     ┃           ┃  (trans)  ┃           ┃  (trans)  ┃  (trans)  ┃
+// ┃   ENTER   ┃  KP /     ┃     1     ┃     2     ┃     3     ┃     .     ┃   ┃     .     ┃           ┃  (trans)  ┃           ┃  (trans)  ┃  (trans)  ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 //                                     ┃  (trans)  ┃  (trans)  ┃  (held)   ┃   ┃   BSPC    ┃  (trans)  ┃  (trans)  ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
@@ -171,7 +185,7 @@ label= "NUM"                               ;
 
                 &kp KP_ASTERISK     &kp N7          &kp N8          &kp N9          &kp N0              &kp TAB         &none        &none        &none        &none
                 &mt LCTRL KP_PLUS   &mt LALT N4     &mt LGUI N5     &mt LSHFT N6    &kp KP_MINUS        &kp EQUAL       &mt RSHFT 0  &mt LGUI 0   &mt RALT 0   &mt RCTRL 0
-    &trans      &kp KP_SLASH        &kp N1          &kp N2          &kp N3          &kp KP_DOT          &kp DOT         &none        &trans       &none        &trans        &trans
+    &kp RET     &kp KP_SLASH        &kp N1          &kp N2          &kp N3          &kp KP_DOT          &kp DOT         &none        &trans       &none        &trans        &trans
                                                     &trans          &trans          &trans              &kp BSPC        &trans       &trans
                 >;
         };
@@ -212,7 +226,7 @@ label= "MOUSE"                             ;
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
 //             ┃           ┃    BT 4   ┃           ┃           ┃  BT CLR   ┃   ┃           ┃   MS LT   ┃   MS DN   ┃   MS RT   ┃           ┃
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-// ┃    BLE    ┃           ┃    BT 1   ┃    BT 2   ┃    BT 3   ┃    USB    ┃   ┃           ┃           ┃           ┃           ┃           ┃  (trans)  ┃
+// ┃    BLE    ┃           ┃    BT 1   ┃    BT 2   ┃    BT 3   ┃    USB    ┃   ┃           ┃           ┃           ┃           ┃           ┃   ENTER   ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 //                                     ┃  (held)   ┃  (trans)  ┃  (trans)  ┃   ┃    BTN1   ┃   BTN2    ┃    ESC    ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
@@ -221,7 +235,7 @@ label= "MOUSE"                             ;
 
                   &none      &none            &none           &none           &bt BT_SEL 0        &none         &msc SCRL_DOWN    &mmv MOVE_UP      &msc SCRL_UP      &none
                   &none      &bt BT_SEL 4     &none           &none           &bt BT_CLR          &none         &mmv MOVE_LEFT    &mmv MOVE_DOWN    &mmv MOVE_RIGHT   &none
-    &out OUT_BLE  &none      &bt BT_SEL 1     &bt BT_SEL 2    &bt BT_SEL 3    &out OUT_USB        &none         &none             &none             &none             &none     &trans
+    &out OUT_BLE  &none      &bt BT_SEL 1     &bt BT_SEL 2    &bt BT_SEL 3    &out OUT_USB        &none         &none             &none             &none             &none     &kp RET
                                               &trans          &trans          &trans              &mkp LCLK     &mkp RCLK         &kp ESC
                 >;
         };
