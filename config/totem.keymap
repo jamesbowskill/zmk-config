@@ -57,6 +57,8 @@
     // BEHAVIORS
     // ═══════════════════════════════════════════════════════════════
     behaviors {
+        
+        // OSL
         lt_sl: lt_sl {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
