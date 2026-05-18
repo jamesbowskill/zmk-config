@@ -139,7 +139,7 @@ label= "BASE"                              ;
 
                       &kp Q           &mt LG(W) W     &kp E           &mt LG(R) R     &mt LG(T) T         &kp Y           &kp U           &mt LG(I) I     &mt LG(O) O     &kp P
                       &mt LCTRL A     &mt LALT S      &mt LGUI D      &mt LSHFT F     &mt MEH G           &mt MEH H       &mt RSHFT J     &mt LGUI K      &mt RALT L      &mt RCTRL MINUS
-    &lt_sl SYM SYM    &mt LG(Z) Z     &mt LG(X) X     &mt LG(C) C     &mt LG(V) V     &kp B               &mt LG(N) N     &kp M           &kp COMMA       &kp DOT         &kp FSLH        &lt_sl SYM SYM
+    &lt_sl SYM SYM    &mt LG(Z) Z     &mt LG(X) X     &mt LG(C) C     &mt LG(V) V     &kp B               &mt LG(N) N     &kp M           &kp COMMA       &kp DOT         &mt LC(FSLH) FSLH    &lt_sl SYM SYM
                                                       &lt MOUSE ESC   &mt LGUI BSPC   &lt NUM TAB         &lt NAV RET     &mt LSHFT SPACE &lt FUN 0
                 >;
         };
