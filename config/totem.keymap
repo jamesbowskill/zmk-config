@@ -151,20 +151,20 @@ label= "BASE"                              ;
 label= "NAV"                               ;
 // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-//             ┃           ┃           ┃           ┃ SCRNSHT   ┃   SPACE   ┃   ┃           ┃  PG UP    ┃    UP     ┃  PG DN    ┃           ┃
+//             ┃           ┃           ┃           ┃  SCRNSHT  ┃   SPACE   ┃   ┃           ┃   PG UP   ┃     ↑     ┃   PG DN   ┃           ┃
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-//             ┃  LCTRL    ┃  LALT     ┃  LGUI     ┃  LSHFT    ┃           ┃   ┃           ┃  LEFT     ┃   DOWN    ┃  RIGHT    ┃  BSPC     ┃
+//             ┃  LCTRL    ┃  LALT     ┃  LGUI     ┃  LSHFT    ┃           ┃   ┃   BACK    ┃     ←     ┃     ↓     ┃     →     ┃    FWD    ┃
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-// ┃  (trans)  ┃  GUI+Z    ┃  GUI+X    ┃  GUI+C    ┃  GUI+V    ┃           ┃   ┃           ┃ CTRL+LEFT ┃           ┃ CTRL+RGHT ┃           ┃  ENTER    ┃
+// ┃  (trans)  ┃  (trans   ┃  (trans)  ┃  (trans)  ┃  (trans)  ┃  (trans)  ┃   ┃           ┃   ← TAB   ┃           ┃   TAB →   ┃           ┃   ENTER   ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 //                                     ┃  (trans)  ┃  (trans)  ┃  (trans)  ┃   ┃  (held)   ┃  (trans)  ┃  (trans)  ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
         bindings = <
 
-                &none           &none           &none           &kp LG(LS(N4))  &kp SPACE           &none           &kp PG_UP       &kp UP          &kp PG_DN       &none
-                &kp LCTRL       &kp LALT        &kp LGUI        &kp LSHFT       &none               &none           &kp LEFT        &kp DOWN        &kp RIGHT       &kp BSPC
-    &trans      &kp LG(Z)       &kp LG(X)       &kp LG(C)       &kp LG(V)       &none               &none           &kp LC(LEFT)    &none           &kp LC(RIGHT)   &none           &kp RET
-                                                &trans          &trans          &trans              &trans          &trans          &trans
+                &none           &none           &none           &kp LG(LS(N4))  &kp SPACE       &none           &kp PG_UP       &kp UP          &kp PG_DN       &none
+                &kp LCTRL       &kp LALT        &kp LGUI        &kp LSHFT       &none           &kp LC(COMMA)   &kp LEFT        &kp DOWN        &kp RIGHT       &kp LC(DOT)
+    &trans      &trans          &trans          &trans          &trans          &trans          &none           &kp LC(LEFT)    &none           &kp LC(RIGHT)   &none           &kp RET
+                                                &trans          &trans          &trans          &trans          &trans          &trans
                 >;
         };
 
