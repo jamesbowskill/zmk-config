@@ -264,7 +264,7 @@ label= "FUN"                             ;
 
                 &none        &kp F7         &kp F8          &kp F9          &kp F10            &none       &none          &kp LC(UP)      &none            &none
                 &none        &kp F4         &kp F5          &kp F6          &kp F11            &none       &kp LC(LEFT)   &kp LC(DOWN)    &kp LC(RIGHT)    &none
-    &trans      &none        &kp F1         &kp F2          &kp F3          &kp F12            &none       &none          &kp LC(COMMA)   &kp LC(DOT) &none      &trans
+    &trans      &none        &kp F1         &kp F2          &kp F3          &kp F12            &none       &none          &kp LC(COMMA)   &kp LC(DOT)      &none      &trans
                                             &trans          &trans          &trans             &trans      &trans         &trans
                 >;
         };
