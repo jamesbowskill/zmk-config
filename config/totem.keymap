@@ -68,16 +68,6 @@
             bindings = <&mo>, <&sl>;
         };
 
-        // OPTION + SPACE (for Alfred shortcut)
-        lt_alt_spc: lt_alt_spc {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <100>;
-            flavor = "tap-preferred";
-            bindings = <&mo>, <&kp>;
-        };
-
     };
 
     // ═══════════════════════════════════════════════════════════════
@@ -143,7 +133,7 @@ label= "BASE"                              ;
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
 // ┃    SYM    ┃     Z     ┃     X     ┃     C     ┃     V     ┃     B     ┃   ┃     N     ┃     M     ┃     ,     ┃     .     ┃     /     ┃    SYM    ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-//                                     ┃ MOUSE/ESC ┃  CMD/BS   ┃  NUM/TAB  ┃   ┃  NAV/ENT  ┃  SFT/SPC  ┃  FUN/ALF  ┃
+//                                     ┃ MOUSE/ESC ┃  NAV/BS   ┃  NUM/TAB  ┃   ┃  FUN/ENT  ┃  SFT/SPC  ┃   ALFRED  ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
         bindings = <
 //  Note: LGUI is used on RH instead of RGUI because RGUI is remapped to Meh in OS via Superkey.app for when using other keyboards
@@ -151,7 +141,7 @@ label= "BASE"                              ;
                       &kp Q           &mt LG(W) W     &kp E           &mt LG(R) R     &mt LG(T) T         &kp Y           &kp U             &mt LG(I) I                 &mt LG(O) O     &kp P
                       &mt LCTRL A     &mt LALT S      &mt LGUI D      &mt LSHFT F     &mt MEH G           &mt MEH H       &mt RSHFT J       &mt LGUI K                  &mt RALT L      &mt RCTRL MINUS
     &lt_sl SYM SYM    &mt LG(Z) Z     &mt LG(X) X     &mt LG(C) C     &mt LG(V) V     &kp B               &mt LG(N) N     &kp M             &kp COMMA                   &kp DOT         &mt LC(FSLH) FSLH    &lt_sl SYM SYM
-                                                      &lt MOUSE ESC   &mt LGUI BSPC   &lt NUM TAB         &lt NAV RET     &mt LSHFT SPACE   &lt_alt_spc FUN LA(SPACE)
+                                                      &lt MOUSE ESC   &lt NAV BSPC    &lt NUM TAB         &lt FUN RET     &mt LSHFT SPACE   &kp LA(SPACE)
                 >;
         };
 
@@ -162,20 +152,20 @@ label= "BASE"                              ;
 label= "NAV"                               ;
 // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-//             ┃           ┃           ┃           ┃  SCRNSHT  ┃   SPACE   ┃   ┃           ┃   PG UP   ┃     ↑     ┃   PG DN   ┃           ┃
+//             ┃    TAB    ┃   PG UP   ┃     ↑     ┃   PG DN   ┃           ┃   ┃           ┃           ┃           ┃           ┃           ┃
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-//             ┃  LCTRL    ┃  LALT     ┃  LGUI     ┃  LSHFT    ┃           ┃   ┃   BACK    ┃     ←     ┃     ↓     ┃     →     ┃    FWD    ┃
+//             ┃    BSPC   ┃     ←     ┃     ↓     ┃     →     ┃           ┃   ┃           ┃    SFT    ┃    CMD    ┃    OPT    ┃   CTRL    ┃
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-// ┃  (trans)  ┃  (trans   ┃  (trans)  ┃  (trans)  ┃  (trans)  ┃  (trans)  ┃   ┃           ┃   ← TAB   ┃           ┃   TAB →   ┃           ┃   ENTER   ┃
+// ┃  (trans)  ┃   ENTER   ┃  (trans)  ┃  (trans)  ┃  (trans)  ┃  (trans)  ┃   ┃           ┃           ┃           ┃           ┃           ┃  (trans)  ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-//                                     ┃  (trans)  ┃  (trans)  ┃  (trans)  ┃   ┃  (held)   ┃  (trans)  ┃  (trans)  ┃
+//                                     ┃  (trans)  ┃   (held)  ┃  (trans)  ┃   ┃  (trans)  ┃  (trans)  ┃  (trans)  ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
         bindings = <
 
-                &none           &none           &none           &kp LG(LS(N4))  &kp SPACE       &none           &kp PG_UP       &kp UP          &kp PG_DN       &none
-                &kp LCTRL       &kp LALT        &kp LGUI        &kp LSHFT       &none           &kp LC(COMMA)   &kp LEFT        &kp DOWN        &kp RIGHT       &kp LC(DOT)
-    &trans      &trans          &trans          &trans          &trans          &trans          &none           &kp LC(LEFT)    &none           &kp LC(RIGHT)   &none           &kp RET
-                                                &trans          &trans          &trans          &trans          &trans          &trans
+                &kp tab      &kp PG_UP      &kp UP          &kp PG_DN       &none           &none         &none         &none          &kp PG_DN      &none
+                &kp BSPC     &kp LEFT       &kp DOWN        &kp RIGHT       &none           &none         &kp LSHFT     &kp LGUI       &kp LALT       &kp LCTRL
+    &trans      &kp RET      &trans         &trans          &trans          &trans          &none         &none         &none          &none          &none        &trans
+                                            &trans          &trans          &trans          &trans        &trans        &trans
                 >;
         };
 
@@ -261,21 +251,21 @@ label= "MOUSE"                             ;
 label= "FUN"                             ;
 // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-//             ┃           ┃    F7     ┃    F8     ┃    F9     ┃    F10    ┃   ┃           ┃           ┃           ┃           ┃           ┃
+//             ┃           ┃    F7     ┃    F8     ┃    F9     ┃    F10    ┃   ┃           ┃           ┃   ZOOM +  ┃           ┃           ┃
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-//             ┃           ┃    F4     ┃    F5     ┃    F6     ┃    F11    ┃   ┃           ┃           ┃           ┃           ┃           ┃
+//             ┃           ┃    F4     ┃    F5     ┃    F6     ┃    F11    ┃   ┃           ┃   ← PREV  ┃   ZOOM -  ┃   NEXT →  ┃           ┃
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-// ┃  (trans)  ┃           ┃    F1     ┃    F2     ┃    F3     ┃    F12    ┃   ┃           ┃           ┃           ┃           ┃           ┃  (trans)  ┃
+// ┃  (trans)  ┃           ┃    F1     ┃    F2     ┃    F3     ┃    F12    ┃   ┃           ┃           ┃  ← BACK   ┃    FWD →  ┃           ┃  (trans)  ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-//                                     ┃  (trans)  ┃  (trans)  ┃  (trans)  ┃   ┃  (trans)  ┃  (trans)  ┃  (held)   ┃
+//                                     ┃  (trans)  ┃  (trans)  ┃  (trans)  ┃   ┃   (held)  ┃  (trans)  ┃  (trans)  ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 
         bindings = <
 
-                &none        &kp F7         &kp F8          &kp F9          &kp F10            &none       &none        &none      &none      &none
-                &none        &kp F4         &kp F5          &kp F6          &kp F11            &none       &none        &none      &none      &none
-    &trans      &none        &kp F1         &kp F2          &kp F3          &kp F12            &none       &none        &none      &none      &none      &trans
-                                            &trans          &trans          &trans             &trans      &trans       &trans
+                &none        &kp F7         &kp F8          &kp F9          &kp F10            &none       &none          &kp LC(UP)      &none            &none
+                &none        &kp F4         &kp F5          &kp F6          &kp F11            &none       &kp LC(LEFT)   &kp LC(DOWN)    &kp LC(RIGHT)    &none
+    &trans      &none        &kp F1         &kp F2          &kp F3          &kp F12            &none       &none          &kp LC(COMMA)   &kp LC(DOT) &none      &trans
+                                            &trans          &trans          &trans             &trans      &trans         &trans
                 >;
         };
 
