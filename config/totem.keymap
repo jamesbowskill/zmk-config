@@ -102,7 +102,7 @@
 
         // F+J (positions 13+16) → Caps Word
         combo_caps_word {
-            timeout-ms = <50>;
+            timeout-ms = <100>;
             key-positions = <13 16>;
             bindings = <&caps_word>;
         };
