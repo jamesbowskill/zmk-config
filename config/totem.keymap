@@ -140,7 +140,7 @@ label= "BASE"                              ;
 
                       &kp Q           &mt LG(W) W     &kp E           &mt LG(R) R     &mt LG(T) T         &kp Y           &kp U             &mt LG(I) I                 &mt LG(O) O     &kp P
                       &mt LCTRL A     &mt LALT S      &mt LGUI D      &mt LSHFT F     &mt MEH G           &mt MEH H       &mt RSHFT J       &mt LGUI K                  &mt RALT L      &mt RCTRL MINUS
-    &lt_sl SYM SYM    &mt LG(Z) Z     &mt LG(X) X     &mt LG(C) C     &mt LG(V) V     &kp B               &mt LG(N) N     &kp M             &kp COMMA                   &kp DOT         &mt LC(FSLH) FSLH    &lt_sl SYM SYM
+    &lt_sl SYM SYM    &mt LG(Z) Z     &mt LG(X) X     &mt LG(C) C     &mt LG(V) V     &mt LS(LCMD(V)) B   &mt LG(N) N     &kp M             &kp COMMA                   &kp DOT         &mt LC(FSLH) FSLH    &lt_sl SYM SYM
                                                       &lt MOUSE ESC   &lt NUM BSPC    &lt NAV TAB         &lt FUN RET     &mt LSHFT SPACE   &kp LA(SPACE)
                 >;
         };
@@ -152,9 +152,9 @@ label= "BASE"                              ;
 label= "NAV"                               ;
 // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-//             ┃    TAB    ┃    END    ┃     ↑     ┃    HOME   ┃           ┃   ┃           ┃           ┃           ┃           ┃           ┃
+//             ┃    TAB    ┃    END    ┃     ↑     ┃    HOME   ┃   SCREEN  ┃   ┃           ┃           ┃           ┃           ┃           ┃
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-//             ┃    BSPC   ┃     ←     ┃     ↓     ┃     →     ┃           ┃   ┃           ┃    SFT    ┃    CMD    ┃    OPT    ┃   CTRL    ┃
+//             ┃    BSPC   ┃     ←     ┃     ↓     ┃     →     ┃   SPACE   ┃   ┃           ┃    SFT    ┃    CMD    ┃    OPT    ┃   CTRL    ┃
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
 // ┃  (trans)  ┃   ENTER   ┃  (trans)  ┃  (trans)  ┃  (trans)  ┃  (trans)  ┃   ┃           ┃           ┃           ┃           ┃           ┃  (trans)  ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
@@ -162,10 +162,10 @@ label= "NAV"                               ;
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
         bindings = <
 
-                &kp TAB             &kp END       &kp UP          &kp HOME        &none           &none         &none         &none          &kp PG_DN      &none
-                &mt LCTRL BSPC      &kp LEFT      &kp DOWN        &kp RIGHT       &none           &none         &kp LSHFT     &kp LGUI       &kp LALT       &kp LCTRL
-    &trans      &mt LG(Z) RET       &trans        &trans          &trans          &trans          &none         &none         &none          &none          &none        &trans
-                                                  &trans          &trans          &trans          &trans        &trans        &trans
+                &kp TAB             &kp END       &kp UP          &kp HOME        &kp LS(LCMD(N4))    &none         &none         &none          &kp PG_DN      &none
+                &mt LCTRL BSPC      &kp LEFT      &kp DOWN        &kp RIGHT       &kp SPACE           &none         &kp LSHFT     &kp LGUI       &kp LALT       &kp LCTRL
+    &trans      &mt LG(Z) RET       &trans        &trans          &trans          &trans              &none         &none         &none          &none          &none        &trans
+                                                  &trans          &trans          &trans              &trans        &trans        &trans
                 >;
         };
 
