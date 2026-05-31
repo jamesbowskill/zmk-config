@@ -186,10 +186,10 @@ label= "NUM"                               ;
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
         bindings = <
 
-                &kp TAB           &mt LG(N7) N7   &mt LG(N8) N8   &mt LG(N9) N9   &mt LG(N0) N0             &none          &none           &none            &none            &none
-                &mt LCTRL BSPC    &mt LG(N4) N4   &mt LG(N5) N5   &mt LG(N6) N6   &mt LC(MINUS) KP_MINUS    &kp EQUAL      &mt RSHFT PLUS  &mt LGUI ASTRK   &mt RALT FSLH    &mt RCTRL 0
-    &trans      &mt LG(Z) RET     &mt LG(N1) N1   &mt LG(N2) N2   &mt LG(N3) N3   &kp KP_DOT                &none          &none           &trans           &none            &trans        &trans
-                                                  &trans          &trans          &trans                    &trans         &trans          &trans
+                &kp TAB             &mt LG(N7) N7   &mt LG(N8) N8   &mt LG(N9) N9   &mt LG(N0) N0       &none          &none           &none            &none            &none
+                &mt LCTRL BSPC      &mt LG(N4) N4   &mt LG(N5) N5   &mt LG(N6) N6   &mt LSHFT MINUS     &kp EQUAL      &mt RSHFT PLUS  &mt LGUI ASTRK   &mt RALT FSLH    &mt RCTRL 0
+    &trans      &mt LS(RET) RET     &mt LG(N1) N1   &mt LG(N2) N2   &mt LG(N3) N3   &kp KP_DOT          &none          &none           &trans           &none            &trans        &trans
+                                                  &trans          &trans          &trans              &trans         &trans          &trans
                 >;
         };
 
