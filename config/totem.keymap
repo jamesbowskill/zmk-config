@@ -133,7 +133,7 @@ label= "BASE"                              ;
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
 // ┃    SYM    ┃     Z     ┃     X     ┃     C     ┃     V     ┃     B     ┃   ┃     N     ┃     M     ┃     ,     ┃     .     ┃     /     ┃    SYM    ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-//                                     ┃ MOUSE/ESC ┃  NUM/BS   ┃  NAV/TAB  ┃   ┃  FUN/ENT  ┃  SFT/SPC  ┃   ALFRED  ┃
+//                                     ┃ MOUSE/ESC ┃  NUM/SPC  ┃  NAV/TAB  ┃   ┃  FUN/ENT  ┃  SFT/BS   ┃   ALFRED  ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
         bindings = <
 //  Note: LGUI is used on RH instead of RGUI because RGUI is remapped to Meh in OS via Superkey.app for when using other keyboards
@@ -141,7 +141,7 @@ label= "BASE"                              ;
                       &kp Q           &mt LG(W) W     &kp E           &mt LG(R) R     &mt LG(T) T         &kp Y           &kp U             &mt LG(I) I       &mt LG(O) O     &kp P
                       &mt LCTRL A     &mt LALT S      &mt LGUI D      &mt LSHFT F     &mt MEH G           &mt MEH H       &mt RSHFT J       &mt LGUI K        &mt RALT L      &mt RCTRL MINUS
     &lt_sl SYM SYM    &mt LG(Z) Z     &mt LG(X) X     &mt LG(C) C     &mt LG(V) V     &mt LG(LS(V)) B     &mt LG(N) N     &kp M             &kp COMMA         &kp DOT         &mt LC(FSLH) FSLH    &lt_sl SYM SYM
-                                                      &lt MOUSE ESC   &lt NUM BSPC    &lt NAV TAB         &lt FUN RET     &mt LSHFT SPACE   &kp LA(SPACE)
+                                                      &lt MOUSE ESC   &lt NUM SPACE   &lt NAV TAB         &lt FUN RET     &mt LSHFT BSPC    &kp LA(SPACE)
                 >;
         };
 
