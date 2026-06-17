@@ -28,12 +28,11 @@
 // ═══════════════════════════════════════════════════════════════════
 // LAYER INDEX
 // ═══════════════════════════════════════════════════════════════════
-#define BASE 0     // Default typing layer (QWERTY)
-#define NAV  1     // Navigation: arrows, page up/dn, word jump, clipboard
-#define NUM  2     // Numpad & brackets
+#define BASE 0     // Default layer (QWERTY)
+#define NAV  1     // Navigation
+#define NUM  2     // Numpad
 #define SYM  3     // Symbols
-#define MOUSE 4    // Mouse control
-#define FUN 5      // Function keys
+#define FUN  4     // Function keys, BLE & mouse
 
 // ═══════════════════════════════════════════════════════════════════
 // SHORTHAND MACRO
@@ -133,7 +132,7 @@ label= "BASE"                              ;
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
 // ┃    SYM    ┃     Z     ┃     X     ┃     C     ┃     V     ┃     B     ┃   ┃     N     ┃     M     ┃     ,     ┃     .     ┃     /     ┃    SYM    ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-//                                     ┃ MOUSE/ESC ┃  NUM/SPC  ┃  NAV/TAB  ┃   ┃   ENTER   ┃ BACKSPACE ┃   ALFRED  ┃
+//                                     ┃  FUN/ESC  ┃  NUM/SPC  ┃  NAV/TAB  ┃   ┃   ENTER   ┃ BACKSPACE ┃   ALFRED  ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
         bindings = <
 //  Note: LGUI is used on RH instead of RGUI because RGUI is remapped to Meh in OS via Superkey.app for when using other keyboards
@@ -141,7 +140,7 @@ label= "BASE"                              ;
                       &kp Q           &mt LG(W) W     &kp E           &mt LG(R) R     &mt LG(T) T         &kp Y               &kp U               &mt LG(I) I       &mt LG(O) O     &kp P
                       &mt LCTRL A     &mt LALT S      &mt LGUI D      &mt LSHFT F     &mt MEH G           &mt MEH H           &mt RSHFT J         &mt LGUI K        &mt RALT L      &mt RCTRL MINUS
     &lt_sl SYM SYM    &mt LG(Z) Z     &mt LG(X) X     &mt LG(C) C     &mt LG(V) V     &mt LG(LS(V)) B     &mt LG(N) N         &kp M               &kp COMMA         &kp DOT         &mt LC(FSLH) FSLH    &lt_sl SYM SYM
-                                                      &lt MOUSE ESC   &lt NUM SPACE   &lt NAV TAB         &mt LG(RET) RET     &mt LG(BSPC) BSPC   &kp LA(SPACE)
+                                                      &lt FUN ESC     &lt NUM SPACE   &lt NAV TAB         &mt LG(RET) RET     &mt LG(BSPC) BSPC   &kp LA(SPACE)
                 >;
         };
 
@@ -220,52 +219,26 @@ label= "SYM"                               ;
 // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 
-        mouse_layer {
-// ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-label= "MOUSE"                             ;
-// ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-//             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-//             ┃           ┃           ┃           ┃           ┃    BT 0   ┃   ┃           ┃  SCRL DN  ┃   MS UP   ┃  SCRL UP  ┃           ┃
-//             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-//             ┃           ┃    BT 4   ┃           ┃           ┃  BT CLR   ┃   ┃           ┃   MS LT   ┃   MS DN   ┃   MS RT   ┃           ┃
-// ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-// ┃    BLE    ┃           ┃    BT 1   ┃    BT 2   ┃    BT 3   ┃    USB    ┃   ┃           ┃           ┃           ┃           ┃           ┃   ENTER   ┃
-// ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-//                                     ┃  (held)   ┃  (trans)  ┃  (trans)  ┃   ┃    BTN1   ┃   BTN2    ┃    ESC    ┃
-//                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-
-        bindings = <
-
-                  &none      &none            &none           &none           &bt BT_SEL 0        &none         &msc SCRL_DOWN    &mmv MOVE_UP      &msc SCRL_UP      &none
-                  &none      &bt BT_SEL 4     &none           &none           &bt BT_CLR          &none         &mmv MOVE_LEFT    &mmv MOVE_DOWN    &mmv MOVE_RIGHT   &none
-    &out OUT_BLE  &none      &bt BT_SEL 1     &bt BT_SEL 2    &bt BT_SEL 3    &out OUT_USB        &none         &none             &none             &none             &none     &kp RET
-                                              &trans          &trans          &trans              &mkp LCLK     &mkp RCLK         &kp ESC
-                >;
-        };
-
-// ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-
-
         fun_layer {
 // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 label= "FUN"                             ;
 // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-//             ┃           ┃    F7     ┃    F8     ┃    F9     ┃    F10    ┃   ┃           ┃   PG DN   ┃   ZOOM +  ┃   PG UP   ┃           ┃
+//             ┃   BT CLR  ┃    F7     ┃    F8     ┃    F9     ┃    F10    ┃   ┃           ┃   SCRL ↓  ┃  MOUSE ↑  ┃   SCRL ↑  ┃           ┃
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-//             ┃           ┃    F4     ┃    F5     ┃    F6     ┃    F11    ┃   ┃           ┃   ← PREV  ┃   ZOOM -  ┃   NEXT →  ┃           ┃
+//             ┃  BT NEXT  ┃    F4     ┃    F5     ┃    F6     ┃    F11    ┃   ┃           ┃  ← MOUSE  ┃  MOUSE ↓  ┃   MOUSE → ┃           ┃
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-// ┃  (trans)  ┃           ┃    F1     ┃    F2     ┃    F3     ┃    F12    ┃   ┃           ┃  ← BACK   ┃           ┃    FWD →  ┃           ┃  (trans)  ┃
+// ┃  (trans)  ┃  BT ZERO  ┃    F1     ┃    F2     ┃    F3     ┃    F12    ┃   ┃           ┃  ← BACK   ┃           ┃    FWD →  ┃           ┃   ENTER   ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-//                                     ┃  (trans)  ┃  (trans)  ┃  (trans)  ┃   ┃   (held)  ┃  (trans)  ┃  (trans)  ┃
+//                                     ┃  (held)   ┃  (trans)  ┃  (trans)  ┃   ┃  L CLICK  ┃  R CLICK  ┃    ESC    ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 
         bindings = <
 
-                &none        &kp F7         &kp F8          &kp F9          &kp F10            &none       &kp PG_DN      &kp LC(UP)      &kp PG_UP        &none
-                &none        &kp F4         &kp F5          &kp F6          &kp F11            &none       &kp LC(LEFT)   &kp LC(DOWN)    &kp LC(RIGHT)    &none
-    &trans      &none        &kp F1         &kp F2          &kp F3          &kp F12            &none       &kp LC(COMMA)  &none           &kp LC(DOT)      &none      &trans
-                                            &trans          &trans          &trans             &trans      &trans         &trans
+                &bt BT_CLR   	&kp F7         &kp F8          &kp F9          &kp F10            &none       			&msc SCRL_DOWN    &mmv MOVE_UP      &msc SCRL_UP      &none
+                &bt BT_NXT  	 	&kp F4         &kp F5          &kp F6          &kp F11            &none       			&mmv MOVE_LEFT    &mmv MOVE_DOWN    &mmv MOVE_RIGHT   &none
+    &trans      &bt BT_SEL 0  	&kp F1         &kp F2          &kp F3          &kp F12            &none      		 	&none           	 &none      				&none      			 	&none			&kp RET
+                                            		&trans          &trans          &trans             &mkp LCLK     		&mkp RCLK         &kp ESC
                 >;
         };
 
