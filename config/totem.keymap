@@ -52,6 +52,8 @@
 
 / {
 
+
+
     // ═══════════════════════════════════════════════════════════════
     // BEHAVIORS
     // ═══════════════════════════════════════════════════════════════
@@ -66,6 +68,16 @@
             flavor = "tap-preferred";
             bindings = <&mo>, <&sl>;
         };
+
+				// Slower tapping term for risky keys
+				mt_slow: mt_slow {
+    			compatible = "zmk,behavior-hold-tap";
+    			#binding-cells = <2>;
+    			tapping-term-ms = <400>; // Adjust delay here
+    			quick-tap-ms = <100>;
+    			flavor = "tap-preferred";
+    			bindings = <&kp>, <&kp>;
+				};
 
     };
 
@@ -137,10 +149,10 @@ label= "BASE"                              ;
         bindings = <
 //  Note: LGUI is used on RH instead of RGUI because RGUI is remapped to Meh in OS via Superkey.app for when using other keyboards
 
-                      &kp Q           &mt LG(W) W     &kp E           &mt LG(R) R     &mt LG(T) T         &kp Y               &kp U               &mt LG(I) I       &mt LG(O) O     &kp P
-                      &mt LCTRL A     &mt LALT S      &mt LGUI D      &mt LSHFT F     &mt MEH G           &mt MEH H           &mt RSHFT J         &mt LGUI K        &mt RALT L      &mt RCTRL MINUS
-    &lt_sl SYM SYM    &mt LG(Z) Z     &mt LG(X) X     &mt LG(C) C     &mt LG(V) V     &mt LG(LS(V)) B     &mt LG(N) N         &kp M               &kp COMMA         &kp DOT         &mt LC(FSLH) FSLH    &lt_sl SYM SYM
-                                                      &lt FUN ESC     &lt NUM SPACE   &lt NAV TAB         &mt LG(RET) RET     &mt LG(BSPC) BSPC   &kp LA(SPACE)
+                      &kp Q           &mt LG(W) W     &kp E           &mt_slow LG(R) R    &mt LG(T) T         &kp Y               &kp U               &mt LG(I) I       &mt LG(O) O     &kp P
+                      &mt LCTRL A     &mt LALT S      &mt LGUI D      &mt LSHFT F    			&mt MEH G           &mt MEH H           &mt RSHFT J         &mt LGUI K        &mt RALT L      &mt RCTRL MINUS
+    &lt_sl SYM SYM    &mt LG(Z) Z     &mt LG(X) X     &mt LG(C) C     &mt LG(V) V     			&mt LG(LS(V)) B     &mt LG(N) N         &kp M               &kp COMMA         &kp DOT         &mt LC(FSLH) FSLH    &lt_sl SYM SYM
+                                                      &lt FUN ESC     &lt NUM SPACE   			&lt NAV TAB         &mt LG(RET) RET     &mt LG(BSPC) BSPC   &kp LA(SPACE)
                 >;
         };
 
