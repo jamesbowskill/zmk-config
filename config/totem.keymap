@@ -144,15 +144,15 @@ label= "BASE"                              ;
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
 // ┃    SYM    ┃     Z     ┃     X     ┃     C     ┃     V     ┃     B     ┃   ┃     N     ┃     M     ┃     ,     ┃     .     ┃     /     ┃    SYM    ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-//                                     ┃  FUN/ESC  ┃  NUM/SPC  ┃  NAV/TAB  ┃   ┃   ENTER   ┃ BACKSPACE ┃   ALFRED  ┃
+//                                     ┃  FUN/ESC  ┃  NUM/BSPC ┃  NAV/TAB  ┃   ┃   ENTER   ┃   SPACE   ┃   ALFRED  ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
         bindings = <
 //  Note: LGUI is used on RH instead of RGUI because RGUI is remapped to Meh in OS via Superkey.app for when using other keyboards
 
-                      &kp Q           &mt LG(W) W     &kp E           &mt_slow LG(R) R    &mt LG(T) T         &kp Y               &kp U               &mt LG(I) I       &mt LG(O) O     &kp P
-                      &mt LCTRL A     &mt LALT S      &mt LGUI D      &mt LSHFT F    			&mt MEH G           &mt MEH H           &mt RSHFT J         &mt LGUI K        &mt RALT L      &mt RCTRL MINUS
-    &lt_sl SYM SYM    &mt LG(Z) Z     &mt LG(X) X     &mt LG(C) C     &mt LG(V) V     			&mt LG(LS(V)) B     &mt LG(N) N         &kp M               &kp COMMA         &kp DOT         &mt LC(FSLH) FSLH    &lt_sl SYM SYM
-                                                      &lt FUN ESC     &lt NUM SPACE   			&lt NAV TAB         &mt LG(RET) RET     &mt LG(BSPC) BSPC   &kp LA(SPACE)
+                      &mt_slow LG(Q) Q    &mt_slow LG(W) W  &kp E           &mt_slow LG(R) R    	&mt LG(T) T         &kp Y               &kp U              &mt LG(I) I       &mt LG(O) O     &kp P
+                      &mt LCTRL A   	  &mt LALT S     	&mt LGUI D      &mt LSHFT F    			&mt MEH G           &mt MEH H           &mt RSHFT J        &mt LGUI K        &mt RALT L      &mt RCTRL MINUS
+    &lt_sl SYM SYM    &mt LG(Z) Z   	  &mt LG(X) X    	&mt LG(C) C     &mt LG(V) V     		&mt LG(LS(V)) B     &mt LG(N) N         &kp M              &kp COMMA         &kp DOT         &mt LC(FSLH) FSLH    &lt_sl SYM SYM
+                                                    		&lt FUN ESC     &lt NUM BSPC   			&lt NAV TAB         &mt LG(RET) RET     &kp SPACE 		   &kp LA(SPACE)
                 >;
         };
 
@@ -167,16 +167,16 @@ label= "NAV"                               ;
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
 //             ┃    BSPC   ┃     ←     ┃     ↓     ┃     →     ┃   ZOOM +  ┃   ┃           ┃    SFT    ┃    CMD    ┃    OPT    ┃   CTRL    ┃
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-// ┃   SHIFT   ┃   ENTER   ┃   ← PREV  ┃           ┃   NEXT →  ┃   ZOOM -  ┃   ┃           ┃           ┃           ┃           ┃           ┃  (trans)  ┃
+// ┃   SHIFT   ┃   ENTER   ┃   ← PREV  ┃   SPACE   ┃   NEXT →  ┃   ZOOM -  ┃   ┃           ┃           ┃           ┃           ┃           ┃  (trans)  ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 //                                     ┃  (trans)  ┃  (trans)  ┃   (held)  ┃   ┃  (trans)  ┃  (trans)  ┃  (trans)  ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
         bindings = <
 
-                &kp TAB             &mt HOME PG_UP       &kp UP              &mt END PG_DN        &kp LG(LS(N4))        &none         &none         &none          &none          &none
-                &mt LG(BSPC) BSPC   &kp LEFT             &kp DOWN            &kp RIGHT            &kp LC(UP)            &none         &kp LSHFT     &kp LGUI       &kp LALT       &kp LCTRL
-    &kp LSHFT   &mt LG(Z) RET       &mt LG(X) LC(LEFT)   &mt LG(C) DOWN      &mt LG(V) LC(RIGHT)  &kp LC(DOWN)          &none         &none         &none          &none          &none        &trans
-                                                         &trans              &trans               &trans                &trans        &trans        &trans
+                &kp TAB             &mt HOME PG_UP       &kp UP              &mt END PG_DN        &kp LG(LS(N4))        		&none         &none         &none          &none          &none
+                &mt LG(BSPC) BSPC   &kp LEFT             &kp DOWN            &kp RIGHT            &mt LG(LC(UP)) LC(UP)    	 	&none         &kp LSHFT     &kp LGUI       &kp LALT       &kp LCTRL
+    &kp LSHFT   &mt LG(Z) RET       &mt LG(X) LC(LEFT)   &mt LG(C) SPACE     &mt LG(V) LC(RIGHT)  &mt LG(LC(DOWN)) LC(DOWN)     &none         &none         &none          &none          &none        &trans
+                                                         &trans              &trans               &trans                		&trans        &trans        &trans
                 >; 
         };
 
@@ -217,14 +217,14 @@ label= "SYM"                               ;
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
 // ┃  (held)   ┃     _     ┃     /     ┃     [     ┃     ]     ┃     =     ┃   ┃     &     ┃     "     ┃     {     ┃     }     ┃     \     ┃   (held)  ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-//                                     ┃   PREV    ┃   PLAY    ┃   NEXT    ┃   ┃   MUTE    ┃  VOL DN   ┃  VOL UP   ┃
+//                                     ┃  (trans)  ┃  (trans)  ┃  (trans)  ┃   ┃  (trans)  ┃  (trans)  ┃  (trans)  ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
         bindings = <
 
-                &none           &kp DOLLAR      &kp LPAR        &kp RPAR        &kp PERCENT           &kp INT_YEN    &kp GRAVE       &kp CARET      &kp TILDE       &kp PIPE
-                &none           &kp ASTRK       &kp SQT         &kp HASH        &kp PLUS              &kp F4         &kp AT          &kp EXCL       &kp SEMI        &kp COLON
-    &trans      &kp UNDER       &kp FSLH        &kp LBKT        &kp RBKT        &kp EQUAL             &kp AMPS       &kp DQT         &kp LBRC       &kp RBRC        &kp BACKSLASH     &trans
-                                                &kp C_PREV      &kp C_PP        &kp C_NEXT            &kp C_MUTE     &kp C_VOL_DN    &kp C_VOL_UP
+                &none           &kp DOLLAR      &kp LPAR    &kp RPAR    &kp PERCENT     &kp LALT(Y)     &kp GRAVE       &kp CARET      &kp TILDE       &kp PIPE
+                &none           &kp ASTRK       &kp SQT     &kp HASH    &kp PLUS        &kp F4          &kp AT          &kp EXCL       &kp SEMI        &kp COLON
+    &trans      &kp UNDER       &kp FSLH        &kp LBKT    &kp RBKT    &kp EQUAL       &kp AMPS        &kp DQT         &kp LBRC       &kp RBRC        &kp BACKSLASH     &trans
+                                                &trans		&trans		&trans			&trans			&trans		 	&trans
                 >;
         };
 
