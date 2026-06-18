@@ -221,7 +221,7 @@ label= "SYM"                               ;
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
         bindings = <
 
-                &none           &kp DOLLAR      &kp LPAR    &kp RPAR    &kp PERCENT     &kp LALT(Y)     &kp GRAVE       &kp CARET      &kp TILDE       &kp PIPE
+                &none           &kp DOLLAR      &kp LPAR    &kp RPAR    &kp PERCENT     &kp LA(Y) 	    &kp GRAVE       &kp CARET      &kp TILDE       &kp PIPE
                 &none           &kp ASTRK       &kp SQT     &kp HASH    &kp PLUS        &kp F4          &kp AT          &kp EXCL       &kp SEMI        &kp COLON
     &trans      &kp UNDER       &kp FSLH        &kp LBKT    &kp RBKT    &kp EQUAL       &kp AMPS        &kp DQT         &kp LBRC       &kp RBRC        &kp BACKSLASH     &trans
                                                 &trans		&trans		&trans			&trans			&trans		 	&trans
