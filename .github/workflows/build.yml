@@ -1,9 +1,6 @@
 name: Build ZMK firmware
 on: [workflow_dispatch]
 
-permissions:
-  actions: write
-
 jobs:
   build:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3
@@ -23,20 +20,3 @@ jobs:
         with:
           name: "Firmware #${{ github.run_number }}"
           path: ./firmware-renamed
-
-      - name: Delete original artifact
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          echo "Available artifacts:"
-          gh api repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts --jq '.artifacts[].name'
-
-          ARTIFACT_ID=$(gh api repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts \
-            --jq '.artifacts[] | select(.name=="firmware") | .id')
-
-          if [ -z "$ARTIFACT_ID" ]; then
-            echo "No artifact named 'firmware' found — skipping delete."
-            exit 0
-          fi
-
-          gh api -X DELETE repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/$ARTIFACT_ID
