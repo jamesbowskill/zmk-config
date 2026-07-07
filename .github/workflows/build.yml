@@ -3,4 +3,20 @@ on: [workflow_dispatch]
 
 jobs:
   build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+
+  # Renames the build artifact to "Firmware #<run number>"
+  rename-artifact:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: firmware
+          path: ./firmware
+      - name: Rename with build number
+        run: mv ./firmware ./firmware-renamed
+      - uses: actions/upload-artifact@v4
+        with:
+          name: "Firmware #${{ github.run_number }}"
+          path: ./firmware-renamed
