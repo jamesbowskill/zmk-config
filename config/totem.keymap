@@ -173,7 +173,7 @@ label= "NAV"                               ;
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
         bindings = <
 
-                &kp TAB             &mt HOME PG_UP       &kp UP              &mt END PG_DN        &kp LG(LS(N4))        		&none         &none         &none          &none          &none
+                &kp TAB             &mt LG(UP) PG_UP     &kp UP              &mt LG(DOWN) PG_DN   &kp LG(LS(N4))        		&none         &none         &none          &none          &none
                 &mt LG(BSPC) BSPC   &kp LEFT             &kp DOWN            &kp RIGHT            &mt LG(LC(UP)) LC(UP)    	 	&none         &kp LSHFT     &kp LGUI       &kp LALT       &kp LCTRL
     &kp LSHFT   &mt LG(Z) RET       &mt LG(X) LC(LEFT)   &mt LG(C) SPACE     &mt LG(V) LC(RIGHT)  &mt LG(LC(DOWN)) LC(DOWN)     &none         &none         &none          &none          &none        &trans
                                                          &trans              &trans               &trans                		&trans        &trans        &trans
